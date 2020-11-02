@@ -208,9 +208,11 @@ fn counter_clockwise(p0: &Point, p1: &Point, p2: &Point) -> bool {
 /// * `i` - The current halfedge index
 pub fn next_halfedge(i: usize) -> usize {
     if i % 3 == 2 {
-        i - 2
+        // i - 2
+        i.checked_sub(2).unwrap_or(i)
     } else {
-        i + 1
+        // i + 1
+        i.checked_add(1).unwrap_or(i)
     }
 }
 
@@ -221,9 +223,11 @@ pub fn next_halfedge(i: usize) -> usize {
 /// * `i` - The current halfedge index
 pub fn prev_halfedge(i: usize) -> usize {
     if i % 3 == 0 {
-        i + 2
+        // i + 2
+        i.checked_add(2).unwrap_or(i)
     } else {
-        i - 1
+        // i - 1
+        i.checked_sub(1).unwrap_or(i)
     }
 }
 
